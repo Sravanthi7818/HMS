@@ -1,0 +1,15 @@
+{
+    "doctors": [
+      {
+        "username": "dr_smith",
+        "password": "securepass"
+      }
+    ],
+    "patients": [
+      {
+        "username": "john_doe",
+        "password": "mypassword"
+      }
+    ]
+  }
+  

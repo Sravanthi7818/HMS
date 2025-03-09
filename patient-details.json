@@ -1,0 +1,37 @@
+[
+    {
+        "name": "John Doe",
+        "age": 45,
+        "symptoms": "Flu, Fever",
+        "status": "Pending",
+        "date": "2025-03-07"
+    },
+    {
+        "name": "Jane Smith",
+        "age": 34,
+        "symptoms": "Regular Checkup",
+        "status": "Completed",
+        "date": "2025-03-08"
+    },
+    {
+        "name": "Jane",
+        "age": 33,
+        "symptoms": "fever",
+        "status": "Completed",
+        "date": "2025-03-09"
+    },
+    {
+        "name": "john_doe",
+        "age": "21",
+        "symptoms": "fever",
+        "status": "Pending",
+        "date": "2025-03-09"
+    },
+    {
+        "name": "jinu",
+        "age": 33,
+        "symptoms": "cough",
+        "status": "pending",
+        "date": "2025-03-08"
+    }
+]
