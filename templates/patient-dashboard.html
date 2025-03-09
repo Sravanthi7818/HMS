@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Dashboard</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <style>
+        body {
+            background: #f5f5f5;
+        }
+        .dashboard-container {
+            margin: 30px auto;
+            max-width: 900px;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        .dashboard-header {
+            background: #007bff;
+            color: white;
+            padding: 15px;
+            border-radius: 5px;
+            text-align: center;
+            font-size: 22px;
+            font-weight: bold;
+        }
+        .btn-group .btn {
+            margin-right: 5px;
+        }
+        .tab-content {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="dashboard-container">
+            <div class="dashboard-header">Patient Dashboard</div>
+
+            <!-- Tab Buttons -->
+            <div class="mt-3 d-flex justify-content-center">
+                <div class="btn-group" role="group">
+                    <button class="btn btn-primary" onclick="showTab('book')">Book Appointment</button>
+                    <button class="btn btn-warning" onclick="showTab('pending')">Pending Appointments</button>
+                    <button class="btn btn-success" onclick="showTab('completed')">Completed Appointments</button>
+                </div>
+            </div>
+
+            <!-- Book Appointment Section -->
+            <div id="book" class="tab-content">
+                <h3 class="mt-4">Book an Appointment</h3>
+                <form action="{{ url_for('book_appointment') }}" method="post">
+                    <div class="mb-3">
+                        <label for="age" class="form-label">Age</label>
+                        <input type="text" class="form-control" name="age" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="symptoms" class="form-label">Symptoms</label>
+                        <textarea class="form-control" name="symptoms" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+
+            <!-- Pending Appointments Section -->
+            <div id="pending" class="tab-content" style="display: none;">
+                <h3 class="mt-4">Pending Appointments</h3>
+                <table class="table table-bordered mt-2">
+                    <thead class="table-warning">
+                        <tr>
+                            <th>Age</th>
+                            <th>Symptoms</th>
+                            <th>Date</th>
+                    
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for appointment in appointments if appointment.status == "Pending" %}
+                        <tr>
+                            <td>{{ appointment.age }}</td>
+                            <td>{{ appointment.symptoms }}</td>
+                            <td>{{ appointment.date }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Completed Appointments Section -->
+            <div id="completed" class="tab-content" style="display: none;">
+                <h3 class="mt-4">Completed Appointments</h3>
+                <table class="table table-bordered mt-2">
+                    <thead class="table-success">
+                        <tr>
+                            <th>Age</th>
+                            <th>Symptoms</th>
+                            <th>Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for appointment in completed_appointments %}
+                        <tr>
+                            <td>{{ appointment.age }}</td>
+                            <td>{{ appointment.symptoms }}</td>
+                            <td>{{ appointment.date }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        function showTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(tab => {
+                tab.style.display = 'none';
+            });
+            document.getElementById(tabId).style.display = 'block';
+        }
+    </script>
+
+</body>
+</html>
